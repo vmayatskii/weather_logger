@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Weather Logger</string>
+    <string name="your_location">Your current location:</string>
+    <string name="weather_now">Weather Now:</string>
+    <string name="last_saving">Last saving:</string>
+    <string name="save">Save</string>
+    <string name="city">City:</string>
+    <string name="temperature">Temperature:</string>
+    <string name="show_savings">Show all savings</string>
+</resources>
