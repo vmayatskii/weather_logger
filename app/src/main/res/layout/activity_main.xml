@@ -43,7 +43,7 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/yourCurrentLocationText"
+        app:layout_constraintTop_toBottomOf="@id/yourCurrentLocationCity"
         app:layout_constraintWidth_percent="0.7">
 
         <TextView
