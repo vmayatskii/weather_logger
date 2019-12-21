@@ -16,6 +16,10 @@ Program uses [openweathermap](https://openweathermap.org/) API to recieve weathe
 where *lat* is current lattitude and *long* is longitude.
 Key is unique openweathermap key, in this particular case I use my account, but it easily can be changed to yours just by changing *key* value.
 
+## Storage
+
+Weather savings stored in this apps Android folder (data/files) as a Json string.
+
 ## Acknowledgments
 
 Perhaps I\`m one of the worst designers in the universe (or even the worst), so don\`t blame this app too hard for being ugly
