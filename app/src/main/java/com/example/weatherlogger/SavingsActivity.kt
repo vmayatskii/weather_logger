@@ -17,7 +17,7 @@ class SavingsActivity : AppCompatActivity() {
 
         // Creating more user-friendly list to show on ListView
         val userFriendlyList =
-            savingsList.map { "Date : ${it.date}\nCity : ${it.city}\nTemperature : ${it.temperature.toInt()}°C" }
+            savingsList.map { "${getString(R.string.date)} ${it.date}\n${getString(R.string.city)} ${it.city}\n${getString(R.string.temperature)} ${it.temperature.toInt()}°C" }
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userFriendlyList)
         listView.adapter = adapter

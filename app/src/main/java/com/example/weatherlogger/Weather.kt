@@ -82,7 +82,7 @@ companion object{
     }
 
     // parses List<Weather> to a Json string
-   private fun listToJsonString(list: List<Weather>) : String{
+    fun listToJsonString(list: List<Weather>) : String{
         var jsonString: String = "{\"weathers\":["
         for (i in list) {
             jsonString += "{\"temperature\":${i.temperature}," +

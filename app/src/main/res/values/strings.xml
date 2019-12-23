@@ -4,7 +4,23 @@
     <string name="weather_now">Weather Now:</string>
     <string name="last_saving">Last saving:</string>
     <string name="save">Save</string>
+    <string name="humidity">Humidity:</string>
     <string name="city">City:</string>
+    <string name="date">Date:</string>
+    <string name="pressure">Pressure:</string>
+    <string name="wind_speed">Wind speed:</string>
     <string name="temperature">Temperature:</string>
     <string name="show_savings">Show all savings</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="location_disabled">Location is disabled. Turn on location services in your phone!</string>
+    <string name="internet_disabled">Internet is dibabled. Turn on the internet!</string>
+    <string name="something_wrong">Oooops! Something went wrong\nPlease Restart app</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="are_you_sure">Are you sure?</string>
+
+
+
 </resources>
