@@ -138,12 +138,16 @@ companion object{
     fun deleteWeather(index : Int, context: Context){
         // getting list of weathers or empty list in case it is no saved weathers yet
         var weatherList : MutableList<Weather> = getWeatherSavingsList(context)
+        val file = File(context.filesDir, FILENAME)
+        if(weatherList.size==1){
+            file.delete()
+            return
+        }
         weatherList.removeAt(index)
 
         val newWeatherSavingsJsonString = listToJsonString(weatherList.asReversed())
 
         // writing renewed list to file
-        val file = File(context.filesDir, FILENAME)
         file.writeText(newWeatherSavingsJsonString, Charsets.UTF_8)
     }
 
