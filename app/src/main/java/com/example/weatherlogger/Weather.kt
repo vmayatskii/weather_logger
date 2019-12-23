@@ -149,12 +149,20 @@ companion object{
 
     fun getLastSavedCity(context : Context) : String{
         val weatherList = getWeatherSavingsList(context).asReversed()
-        return weatherList[weatherList.size-1].city
+        return if(weatherList.size==0) {
+            "None yet"
+        } else {
+            weatherList[weatherList.size - 1].city
+        }
     }
 
     fun getLastSavedTemperature(context : Context) : Double{
         val weatherList = getWeatherSavingsList(context).asReversed()
-        return weatherList[weatherList.size-1].temperature
+        return if(weatherList.size==0){
+            0.0
+        } else {
+            weatherList[weatherList.size - 1].temperature
+        }
     }
 
 }
