@@ -106,13 +106,13 @@ companion object{
         val file = File(context.filesDir, FILENAME)
 
         // if file does not exists, returning empty list
-        if(!file.exists()){
-            return mutableListOf<Weather>()
+        return if(!file.exists() || file.length()==0.toLong()){
+            mutableListOf<Weather>()
+        } else {
+            val weatherListAsAJsonString: String = file.readText(Charsets.UTF_8)
+
+            fromJsonToList(weatherListAsAJsonString).asReversed()
         }
-
-        val weatherListAsAJsonString: String = file.readText(Charsets.UTF_8)
-
-        return fromJsonToList(weatherListAsAJsonString).asReversed()
     }
 
     private fun fromJsonToList(json : String) : MutableList<Weather>{
