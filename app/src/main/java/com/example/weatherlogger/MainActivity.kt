@@ -19,6 +19,7 @@ import android.location.Geocoder
 import android.net.ConnectivityManager
 import android.view.View
 import java.util.*
+import kotlin.coroutines.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
 }
 
     override fun onResume() {

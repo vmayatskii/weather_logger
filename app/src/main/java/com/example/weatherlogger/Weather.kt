@@ -3,6 +3,10 @@ package com.example.weatherlogger
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
 import java.io.File
 import java.lang.Exception
@@ -10,6 +14,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.coroutines.*
 
 class Weather (
     var temperature : Double = 0.0, // temperature
@@ -25,32 +30,27 @@ companion object{
 
     // returns temperature in current location by longitude and latitude
     fun getWeather(long : Double, lat : Double, city : String = "", context : Context ) : Weather{
-        val key = "e969637b42055b4ad51e22ecc8b7310c" // Api key from my account from openweathermap.org
-        val url = URL("http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=${key}&units=metric")
-        val urlConnection = url.openConnection() as HttpURLConnection
-        var response : String = ""
+        var response: String = ""
+        runBlocking {
+            val key =
+                "e969637b42055b4ad51e22ecc8b7310c" // Api key from my account from openweathermap.org
+            val url =
+                URL("http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=${key}&units=metric")
+            val urlConnection = url.openConnection() as HttpURLConnection
 
-        try {
-            Thread {
-                // Responce will be returned as a Json string
-                response = urlConnection.inputStream.bufferedReader().readText()
-            }.start()
+            val getResponse = GlobalScope.launch { response = getResponse(urlConnection) }
+            getResponse.start()
+            getResponse.join()
 
-            // Reader from internet connection works in separate thread so
-            // I use this loop to synchronize Threads.
-            // I know, that`s not the best way to synchronize them, but
-            // in this case it works properly
-            while(response=="") {}
-
+            // waiting for koan to finish
+            urlConnection.disconnect()
         }
-        catch (e : Exception) {
-            context.startActivity(Intent(context,SomethingWrongActivity::class.java))
-        }
-        finally {
-                urlConnection.disconnect()
-            }
 
-        return responseToWeather(response,city)
+            return responseToWeather(response, city)
+    }
+
+    private suspend fun getResponse(urlConnection : HttpURLConnection) : String {
+        return urlConnection.inputStream.bufferedReader().readText()
     }
 
     // parses response from openweathermap to Weather object
